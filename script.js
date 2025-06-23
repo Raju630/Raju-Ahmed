@@ -16,6 +16,8 @@ async function initialize() {
     setupSearchListener();
     setupImportListener();
     setupCategoryFilters();
+    setupInputListeners(); // Add this
+    setupScrollToTop();    // Add this
     // Clear any existing content in weak words display
     document.getElementById('weak-word-content').innerHTML = '';
 }
@@ -268,9 +270,10 @@ function addWord() {
         updateWordDisplay();
         updateStats();
         clearInputs();
+        // Focus back on word input
+        document.getElementById('word-input').focus();
     }
 }
-
 function createWordCard(word) {
     const card = document.createElement('div');
     card.className = 'word-card';
@@ -553,6 +556,44 @@ function setupImportListener() {
         };
 
         reader.readAsText(file);
+    });
+}
+// Handle Enter key press
+function setupInputListeners() {
+    const wordInput = document.getElementById('word-input');
+    const meaningInput = document.getElementById('meaning-input');
+    const categorySelect = document.getElementById('category-select');
+
+    function handleEnterKey(e) {
+        if (e.key === 'Enter') {
+            addWord();
+        }
+    }
+
+    wordInput.addEventListener('keypress', handleEnterKey);
+    meaningInput.addEventListener('keypress', handleEnterKey);
+    categorySelect.addEventListener('keypress', handleEnterKey);
+}
+
+// Scroll to top functionality
+function setupScrollToTop() {
+    const scrollButton = document.getElementById('scroll-to-top');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollButton.classList.add('visible');
+        } else {
+            scrollButton.classList.remove('visible');
+        }
+    });
+
+    // Scroll to top when clicked
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }
 
