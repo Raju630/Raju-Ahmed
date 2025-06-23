@@ -404,3 +404,31 @@ input, .category-select {
     border-radius: 4px;
     margin-bottom: 20px;
 }
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #8b6b4a;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    background-color: #6d543a;
+    transform: translateY(-2px);
+}
+
+.scroll-to-top.visible {
+    display: flex;
+}
