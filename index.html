@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Japanese Dictionary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>N5 DICTIONARY</h1>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('dictionary')">Dictionary</button>
+            <button class="nav-tab" onclick="showTab('weak-words')">Weak Words</button>
+            <button class="nav-tab" onclick="showTab('quiz')">Quiz</button>
+            <button class="nav-tab" onclick="showTab('settings')">Settings</button>
+        </div>
+
+        <!-- Dictionary Tab -->
+        <div id="dictionary-tab" class="tab-content active">
+            <!-- Random Word Section -->
+            <div class="random-word-section">
+                <button onclick="getRandomWord()" class="control-button random-button">Show Random Word</button>
+                <div class="random-word-container">
+                    <div id="random-word-content" class="random-word-content">
+                        <!-- Word will be displayed here -->
+                    </div>
+                    <button onclick="toggleRandomMeaning()" class="control-button" id="show-meaning-btn">Show Meaning</button>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div id="input-section">
+                <h3>Add New Word</h3>
+                <div class="input-container">
+                    <input type="text" id="word-input" placeholder="Enter Bangla word">
+                    <input type="text" id="meaning-input" placeholder="Enter Japanese meaning">
+                    <select id="category-select" class="category-select">
+                        <option value="">Select Category</option>
+                        <option value="noun">Noun</option>
+                        <option value="verb">Verb</option>
+                        <option value="adjective">Adjective</option>
+                        <option value="adverb">Adverb</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <button onclick="addWord()" class="add-button">Add Word</button>
+                </div>
+            </div>
+
+            <!-- Search and Filter Section -->
+            <div class="search-section">
+                <input type="text" class="search-input" id="search-input" placeholder="Search words...">
+                <div class="filter-tags" id="category-filters"></div>
+            </div>
+
+            <!-- Word List Section -->
+            <div class="word-list-section">
+                <h3>All Words</h3>
+                <div class="word-list-container" id="word-list-container"></div>
+            </div>
+        </div>
+
+        <!-- Weak Words Tab -->
+        <div id="weak-words-tab" class="tab-content">
+            <div class="weak-words-section">
+                <h3>Weak Words Practice</h3>
+                <div class="weak-words-stats">
+                    <div class="stat-box">
+                        <div class="stat-number" id="weak-words-count">0</div>
+                        <div>Weak Words</div>
+                    </div>
+                </div>
+                <div class="weak-word-practice">
+                    <button onclick="practiceWeakWords()" class="control-button">Practice Weak Words</button>
+                    <div id="weak-word-content" class="weak-word-content"></div>
+                    <button onclick="toggleWeakWordMeaning()" class="control-button" id="weak-word-meaning-btn">Show Meaning</button>
+                </div>
+                <div class="weak-words-list" id="weak-words-list"></div>
+            </div>
+        </div>
+
+        <!-- Quiz Tab -->
+        <div id="quiz-tab" class="tab-content">
+            <div class="quiz-container">
+                <h3>Vocabulary Quiz</h3>
+                <div class="quiz-stats">
+                    <p>Current Score: <span id="quiz-score">0</span></p>
+                </div>
+                <div id="quiz-question"></div>
+                <div id="quiz-options"></div>
+                <button onclick="startQuiz()" class="add-button">Start New Quiz</button>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings-tab" class="tab-content">
+            <div class="export-import">
+                <h3>Export/Import Dictionary</h3>
+                <button onclick="exportDictionary()" class="add-button">Export Dictionary</button>
+                <input type="file" id="import-file" accept=".json" style="display: none">
+                <button onclick="document.getElementById('import-file').click()" class="add-button">Import Dictionary</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="total-words">0</div>
+                    <div>Total Words</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="quiz-score-total">0</div>
+                    <div>Quiz Score</div>
+                </div>
+            </div>
+
+            <div class="voice-settings">
+                <h3>Voice Settings</h3>
+                <button onclick="checkJapaneseVoices()" class="add-button">Check Available Voices</button>
+                <div id="voice-list" class="voice-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
